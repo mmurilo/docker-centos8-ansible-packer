@@ -1,8 +1,11 @@
-FROM geerlingguy/docker-centos8-ansible as build
+FROM ubuntu as build
 
-RUN yum install -y yum-utils && \
-    yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && \
-    yum -y update && \
-    yum clean all
-
-RUN yum -y install packer
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y \
+    ansible \
+    packer \
+    unzip \
+    openssl \
+    openssh-client && \
+    apt autoremove
