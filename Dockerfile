@@ -1,11 +1,10 @@
-FROM ubuntu as build
+FROM hashicorp/packer as base
 
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y \
-    ansible \
-    packer \
+RUN apk add ansible \
+    ansible-lint \
+    yamllint \
     unzip \
     openssl \
-    openssh-client && \
-    apt autoremove
+    openssh-client
+
+ENTRYPOINT []
